@@ -34,20 +34,25 @@ public class TesteActivity extends AppCompatActivity {
 
     public void ok(View v){
         EditText texto = findViewById(R.id.editText);
-        Intent i = new Intent(this,MainActivity.class);
+        Intent i = new Intent();
         Bundle param = new Bundle();
-        Toast.makeText(this, "" + botao, Toast.LENGTH_SHORT).show();
-        param.putInt("botao",botao);
-        //param.putString("valor",texto.getText().toString());
+
+        param.putString("valor",texto.getText().toString());
         if (texto.getText().toString().equals("")) {
             Toast.makeText(this, "Insira um valor!", Toast.LENGTH_SHORT).show();
+        }else {
+            param.putInt("botao",botao);
+            param.putString("valor",texto.getText().toString());
+            i.putExtras(param);
+            setResult(1, i);
+            finish();
         }
-        i.putExtras(param);
-        startActivity(i);
     }
 
     public  void cancelar(View view){
         setResult(RESULT_CANCELED);
         finish();
+
     }
+
 }
